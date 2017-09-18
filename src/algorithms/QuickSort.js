@@ -10,20 +10,22 @@
     var i = min;
     var j = max;
     while (i <= j) {
-      while (values[i] < pivot && i <= j)
+      while (values[i] < pivot)
         i++;
-      while (values[j] < pivot && j >= i)
+      while (values[j] < pivot)
         j++;
 
       if (i <= j) {
         var temp = values[i];
         values[i] = values[j];
         values[j] = temp;
+        i++;
+        j--;
       }
     }
 
-    if (min < j)
-      sort(values, min, j)
+    if (min < i - 1)
+      sort(values, min, i - 1)
     if (max > i)
       sort(values, i, max);
   }
