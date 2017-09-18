@@ -1,6 +1,6 @@
-# Sort Algorithms
+# Sort Algorithms Mobile App
 
-![gif](https://im.ezgif.com/tmp/ezgif-1-51d133f938.gif "demo")
+![gif](https://im.ezgif.com/tmp/ezgif-1-ec9c2f5534.gif)
 
 ## Project
 
