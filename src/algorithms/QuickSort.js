@@ -101,6 +101,7 @@ class StepQuickSort {
 export default class QuickSort {
   values;
   steps = [];
+  completed = false;
 
   constructor(values) {
     this.values = values;
@@ -116,6 +117,14 @@ export default class QuickSort {
         this.steps = [...this.steps, ...sort.getSubSorting()];
       }
     }
+    else {
+      completed = true;
+    }
+    return true;
+  }
+
+  isCompleted() {
+    return this.completed;
   }
 
   getData() {

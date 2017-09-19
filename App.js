@@ -32,7 +32,9 @@ export default class App extends React.Component {
     this.intervalId = setInterval(() => {
       if (!this.sortAlgorithm)
         return;
-      this.sortAlgorithm.next();
+      while (!this.sortAlgorithm.isCompleted() && !this.sortAlgorithm.next()) {
+
+      }
       this.setState(() => {
         return {
           data: this.sortAlgorithm.getData()
@@ -78,33 +80,43 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text
+          style={styles.title}>
+          sort algorithms
+        </Text>
         <VictoryBar
           data={this.state.data}
+          style={ { data: { fill: '#ff66cc' } }}
         />
-        <Text>
+        <Text
+          style={styles.text}>
           Speed: {Math.floor(this.state.speed * 100 / (MAX_SPEED - MIN_SPEED))}%
         </Text>
         <Slider
-         style={{ width: 300 }}
-         step={2}
-         minimumValue={0}
-         maximumValue={MAX_SPEED - MIN_SPEED}
-         value={this.state.speed}
-         onValueChange={val => {
-           this.setState({ speed: val })
-           this.resetTimer();
-         }}
+          maximumTrackTintColor='white'
+          minimumTrackTintColor='#ff66cc'
+          style={{ width: 300 }}
+          step={2}
+          minimumValue={0}
+          maximumValue={MAX_SPEED - MIN_SPEED}
+          onValueChange={val => {
+            this.setState({ speed: val })
+            this.resetTimer();
+          }}
         />
         <Button
-          title='Bubble Sort'
+          color='#ff66cc'
+          title='bubble sort'
           onPress={this.setBubbleSort.bind(this)}
         />
         <Button
-          title='Linear Sort'
+          color='#ff66cc'
+          title='linear sort'
           onPress={this.setLinearSort.bind(this)}
         />
         <Button
-          title='Quick Sort'
+          color='#ff66cc'
+          title='quick sort'
           onPress={this.setQuickSort.bind(this)}
         />
       </View>
@@ -117,10 +129,15 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: 'white',
+        backgroundColor: '#222',
+        paddingTop: 50
     },
-    chart: {
-        width: 200,
-        height: 200,
+    title: {
+      color: 'white',
+      fontSize: 20,
+      fontWeight: '900'
     },
+    text: {
+      color: 'white'
+    }
 });

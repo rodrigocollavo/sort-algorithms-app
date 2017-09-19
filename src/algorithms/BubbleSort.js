@@ -16,6 +16,7 @@ export default class BubbleSort {
   values;
   lastI = 1;
   lastJ = 0;
+  completed = false;
 
   constructor(values) {
     this.values = values;
@@ -27,14 +28,22 @@ export default class BubbleSort {
       this.lastI++;
       this.lastJ = 0;
     }
-    if (this.lastI >= this.values.length)
-      return;
+    if (this.lastI >= this.values.length) {
+      this.completed = true;
+      return false;
+    }
 
     if (this.values[this.lastJ] > this.values[this.lastJ + 1]) {
       var temp = this.values[this.lastJ];
       this.values[this.lastJ] = this.values[this.lastJ + 1];
       this.values[this.lastJ + 1] = temp;
+      return true;
     }
+    return false;
+  }
+
+  isCompleted() {
+    return this.completed;
   }
 
   getData() {

@@ -16,6 +16,7 @@ export default class LinearSort {
   values;
   lastI = 0;
   lastJ = 0;
+  completed = false;
 
   constructor(values) {
     this.values = values;
@@ -27,16 +28,23 @@ export default class LinearSort {
       this.lastI++;
       this.lastJ = this.lastI + 1;
     }
-    if (this.lastI >= this.values.length)
-      return;
+    if (this.lastI >= this.values.length) {
+      this.completed = true;
+      return false;
+    }
 
     if (this.values[this.lastI] > this.values[this.lastJ]) {
       var temp = this.values[this.lastJ];
       this.values[this.lastJ] = this.values[this.lastI];
       this.values[this.lastI] = temp;
+      return true;
     }
+    return false;
   }
 
+  isCompleted() {
+    return this.completed;
+  }
   getData() {
     return [...this.values];
   }
