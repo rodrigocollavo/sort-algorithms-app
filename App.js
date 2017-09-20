@@ -4,6 +4,7 @@ import { VictoryBar } from "victory-native";
 import BubbleSort from './src/algorithms/BubbleSort';
 import LinearSort from './src/algorithms/LinearSort';
 import QuickSort from './src/algorithms/QuickSort';
+import MergeSort from './src/algorithms/MergeSort';
 
 // 0: slowest, 500: fastest
 const DEFAULT_SORT_SPEED = 0;
@@ -77,6 +78,15 @@ export default class App extends React.Component {
     });
   }
 
+  setMergeSort() {
+    this.sortAlgorithm = new MergeSort(this.generateRandomValues(NUMBERS_AMOUNT));
+    this.setState(() => {
+      return {
+        data: this.sortAlgorithm.getData()
+      };
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -118,6 +128,11 @@ export default class App extends React.Component {
           color='#ff66cc'
           title='quick sort'
           onPress={this.setQuickSort.bind(this)}
+        />
+        <Button
+          color='#ff66cc'
+          title='merge sort'
+          onPress={this.setMergeSort.bind(this)}
         />
       </View>
     );
